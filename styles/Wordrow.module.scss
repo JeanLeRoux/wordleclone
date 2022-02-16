@@ -1,0 +1,23 @@
+.lettersContainer {
+  display: flex;
+  width: 21rem;
+  justify-content: space-around;
+  align-self: center;
+}
+
+.letterBlock {
+  width: 3.7rem;
+  height: 3.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.445);
+  display: flex;
+  justify-content: center;
+}
+
+.letter {
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-weight: bold;
+  font-size: 1.8rem;
+  align-self: center;
+}

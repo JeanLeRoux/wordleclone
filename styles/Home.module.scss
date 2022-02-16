@@ -1,0 +1,16 @@
+.container {
+  background-color: black;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.wordsBox {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-self: center;
+  height: 25rem;
+  margin-bottom: 2rem;
+}
