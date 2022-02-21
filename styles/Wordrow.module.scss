@@ -5,12 +5,26 @@
   align-self: center;
 }
 
-.letterBlock {
+@mixin letterBlock {
   width: 3.7rem;
   height: 3.7rem;
   border: 1px solid rgba(255, 255, 255, 0.445);
   display: flex;
   justify-content: center;
+}
+
+.normalLetterBlock{
+  @include letterBlock();
+}
+
+.correctLetterBlock{
+  @include letterBlock;
+  background-color: green;
+}
+
+.almostLetterBlock{
+  @include letterBlock;
+  background-color: orange;
 }
 
 .letter {
