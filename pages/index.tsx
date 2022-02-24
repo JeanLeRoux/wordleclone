@@ -9,6 +9,7 @@ export default function Home() {
   const [wordRow, setWordRow] = useState(0);
   const [letterNumber, setLetterNumber] = useState(0);
   const [correctWord, setCorrectWord] = useState([]);
+  const [wordNotGuessedCorrect, setWordGuessedNotCorrect] = useState(true);
   const [words, setWords] = useState([
     ["", "", "", "", ""],
     ["", "", "", "", ""],
@@ -40,7 +41,9 @@ export default function Home() {
   ];
 
 useEffect(() => {
-  setCorrectWord(wordleWords[Math.floor(Math.random()*2500)].split(""));
+  let wordToGuess = wordleWords[Math.floor(Math.random()*2500)].split("");
+  console.log(wordToGuess);
+  setCorrectWord(wordToGuess);
 }, [])
 
 
@@ -49,6 +52,7 @@ const validateLetters = (word, correctWord) => {
   console.log(correctWord)
   console.log(word)
   let wordrow = wordRow;
+  let correctCount = 0;
   let letterStat = letterStatus[wordrow]; 
   if(wordleWords.includes(word.join(""))){
     for(let j = 0; j < 5; j++){
@@ -57,7 +61,13 @@ const validateLetters = (word, correctWord) => {
       }
       if(word[j] == correctWord[j]){
         letterStat[j] = "c"
+        correctCount++;
       }
+    }
+    console.log(correctCount);
+    console.log("row ", wordRow);
+    if(correctCount == 5){
+      setWordGuessedNotCorrect(false);
     }
     return true;
   }else{
@@ -75,6 +85,11 @@ const validateLetters = (word, correctWord) => {
       wordrow++;
       setWordRow(wordrow);
       setLetterNumber(0);
+
+      if(wordRow == 5 && wordNotGuessedCorrect){
+        let msg = "The correct word is "+correctWord.join("");
+        alert(msg)
+      }
     }
     else{
       alert("The word does not exist in the list")
