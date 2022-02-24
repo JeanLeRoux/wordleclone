@@ -1,12 +1,16 @@
 .button {
   background-color: rgb(180, 180, 180);
   border-radius: 4px;
-  width: 3.5rem;
-  height: 3rem;
+  height: 58px;
+  width: 37px;
   display: flex;
   justify-content: center;
   cursor: pointer;
+  margin: 0 6px 0 0;
   border: none;
+  @media screen and (max-width: 400px) {
+    width: 32px;
+  }
   // background-color: rgb(83, 83, 83);
   // background-color: green;
 }
@@ -14,30 +18,35 @@
 .specialButton{
     background-color: rgb(180, 180, 180);
     border-radius: 4px;
-    width: 4.3rem;
-    height: 3rem;
+    height: 58px;
+    width: 70px;
     display: flex;
     justify-content: center;
     cursor: pointer;
     border: none;
+    margin: 0 6px 0 0;
+    @media screen and (max-width: 400px) {
+      width: 48px;
+    }
 }
 
 .buttonLetter {
   color: white;
   font-size: 1.1rem;
   align-self: center;
+  @media screen and (max-width: 400px) {
+    font-size: 12px;
+  }
 }
 
 .keyboardRow{
     display: flex;
-    justify-content: space-around;
+    margin: 0 auto 8px;
 }
 
 .keyboard{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    width: 40rem;
-    height: 10rem;
     align-self: center;
 }
