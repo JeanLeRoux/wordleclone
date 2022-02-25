@@ -4,7 +4,6 @@ import Wordrow from "../components/Wordrow";
 import styles from "../styles/Home.module.scss";
 import keyboardStyle from "../styles/Keyboard.module.scss";
 import wordleWords from "../data/wordleWords.json";
-import { Head } from "next/document";
 
 export default function Home() {
   const [wordRow, setWordRow] = useState(0);
