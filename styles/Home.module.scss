@@ -1,6 +1,5 @@
 .container {
-  background-color: black;
-  height: 100vh;
+  background-color: #FEFDFE;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -13,4 +12,18 @@
   align-self: center;
   height: 25rem;
   margin-bottom: 2rem;
+}
+
+.header{
+  background-color: #CA7C83;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.headerTitle{
+  color: #FEFDFE;
+  font-size: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

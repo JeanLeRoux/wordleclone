@@ -8,7 +8,7 @@
 @mixin letterBlock {
   width: 3.7rem;
   height: 3.7rem;
-  border: 1px solid rgba(255, 255, 255, 0.445);
+  border: 1px solid rgba(0, 0, 0, 0.445);
   display: flex;
   justify-content: center;
 }
@@ -19,18 +19,23 @@
 
 .correctLetterBlock{
   @include letterBlock;
-  background-color: green;
+  background-color: #CA7C83;
 }
 
 .almostLetterBlock{
   @include letterBlock;
-  background-color: orange;
+  background-color: #F9DaDD;
+}
+
+.notCorrectLetterBlock{
+  @include letterBlock;
+  background-color: #ADADAD;
 }
 
 .letter {
   margin: 0;
   padding: 0;
-  color: white;
+  color: black;
   font-weight: bold;
   font-size: 1.8rem;
   align-self: center;
