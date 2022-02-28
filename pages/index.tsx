@@ -10,7 +10,7 @@ export default function Home() {
   const [letterNumber, setLetterNumber] = useState(0);
   const [correctWord, setCorrectWord] = useState([]);
   const [wordNotGuessedCorrect, setWordGuessedNotCorrect] = useState(true);
-  const [words, setWords] = useState([
+  const [words] = useState([
     ["", "", "", "", ""],
     ["", "", "", "", ""],
     ["", "", "", "", ""],
@@ -18,7 +18,7 @@ export default function Home() {
     ["", "", "", "", ""],
     ["", "", "", "", ""],
   ]);
-  const [letterStatus, setLetterStatus] = useState([
+  const [letterStatus] = useState([
     ["n", "n", "n", "n", "n"],
     ["n", "n", "n", "n", "n"],
     ["n", "n", "n", "n", "n"],
@@ -40,33 +40,67 @@ export default function Home() {
     "BACK",
   ];
 
+  const [keyboardTopRowStatus] = useState(["n", "n", "n", "n", "n", "n", "n", "n", "n", "n"]);
+  const [keyboardMiddleRowStatus] = useState(["n", "n", "n", "n", "n", "n", "n", "n", "n"]);
+  const [keyboardBottomRowStatus] = useState([
+    "n",
+    "n",
+    "n",
+    "n",
+    "n",
+    "n",
+    "n",
+    "n",
+    "n",
+  ]);
+
   useEffect(() => {
     let wordToGuess = wordleWords[Math.floor(Math.random() * 2500)].split("");
     console.log(wordToGuess);
     setCorrectWord(wordToGuess);
   }, []);
 
+  const updateKeyboard = (letter, letterCorrect) => {
+    let keyboardRow = undefined;
+    let keyboardRowStatus = undefined;
+
+    if(keyboardTopRow.includes(letter)){
+      keyboardRow = keyboardTopRow;
+      keyboardRowStatus = keyboardTopRowStatus;
+    }else if(keyboardMiddleRow.includes(letter)){
+      keyboardRow = keyboardMiddleRow;
+      keyboardRowStatus = keyboardMiddleRowStatus;
+    }else{
+      keyboardRow = keyboardBottomRow;
+      keyboardRowStatus = keyboardBottomRowStatus;
+    }
+    // console.log(keyboardRowStatus)
+    keyboardRowStatus[keyboardRow.indexOf(letter)] = letterCorrect;
+  }
+
   const validateLetters = (word, correctWord) => {
-    console.log(correctWord);
-    console.log(word);
     let wordrow = wordRow;
     let correctCount = 0;
     let letterStat = letterStatus[wordrow];
+    let letterCorrect = undefined;
     if (wordleWords.includes(word.join(""))) {
       for (let j = 0; j < 5; j++) {
+        
         if (correctWord.includes(word[j])) {
           letterStat[j] = "a";
+          letterCorrect = "a"
         }
         if (word[j] == correctWord[j]) {
           letterStat[j] = "c";
+          letterCorrect = "c"
           correctCount++;
         }
         if (!correctWord.includes(word[j])) {
           letterStat[j] = "i";
+          letterCorrect = "i"
         }
+        updateKeyboard(word[j],letterCorrect);
       }
-      console.log(correctCount);
-      console.log("row ", wordRow);
       if (correctCount == 5) {
         setWordGuessedNotCorrect(false);
       }
@@ -102,7 +136,6 @@ export default function Home() {
 
     if (letterNum != -1) {
       word[letterNum] = "";
-      console.log(word);
       setLetterNumber(() => letterNumber - 1);
     }
   };
@@ -135,29 +168,32 @@ export default function Home() {
         </div>
         <div className={keyboardStyle.keyboard}>
           <div className={keyboardStyle.keyboardRow}>
-            {keyboardTopRow.map((letter) => (
+            {keyboardTopRow.map((letter, index) => (
               <KeyboardButton
                 key={letter}
                 letter={letter}
                 typeLetter={typeLetter}
+                keyStatus= {keyboardTopRowStatus[index]}
               />
             ))}
           </div>
           <div className={keyboardStyle.keyboardRow}>
-            {keyboardMiddleRow.map((letter) => (
+            {keyboardMiddleRow.map((letter, index) => (
               <KeyboardButton
                 key={letter}
                 letter={letter}
                 typeLetter={typeLetter}
+                keyStatus= {keyboardMiddleRowStatus[index]}
               />
             ))}
           </div>
           <div className={keyboardStyle.keyboardRow}>
-            {keyboardBottomRow.map((letter) => (
+            {keyboardBottomRow.map((letter, index) => (
               <KeyboardButton
                 key={letter}
                 letter={letter}
                 typeLetter={typeLetter}
+                keyStatus= {keyboardBottomRowStatus[index]}
               />
             ))}
           </div>

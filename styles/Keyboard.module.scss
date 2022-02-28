@@ -1,4 +1,4 @@
-.button {
+@mixin button {
   background-color: rgb(82, 82, 82);
   border-radius: 4px;
   height: 58px;
@@ -28,6 +28,25 @@
     @media screen and (max-width: 400px) {
       width: 48px;
     }
+}
+
+.normalLetter{
+  @include button();
+}
+
+.correctLetter{
+  @include button();
+  background-color: #CA7C83;
+}
+
+.almostLetter{
+  @include button();
+  background-color: #F9DaDD;
+}
+
+.notCorrectLetter{
+  @include button();
+  background-color: #ADADAD;
 }
 
 .buttonLetter {
